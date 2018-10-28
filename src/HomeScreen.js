@@ -23,6 +23,14 @@ export default class HomeScreen extends Component {
             ))
           }
         </View>
+        <Button
+          title='Budget'
+          onPress={() => {
+              console.log('button pressed');
+              this.props.navigation.navigate('Budget');
+            }
+          }
+        />
       </View>
     );
   }
