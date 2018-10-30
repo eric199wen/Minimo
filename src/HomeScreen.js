@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Header, ListItem, Button } from 'react-native-elements';
+import { ListItem, Button } from 'react-native-elements';
 
 import CustomListItem from './CustomListItem';
 
