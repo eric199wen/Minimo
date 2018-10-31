@@ -27,14 +27,9 @@ export default class HomeScreen extends Component {
           icon: 'home'
         }
       ],
-      isSwipeoutClose: true
     }
   }
 
-  setSwipeoutClose() {
-    this.setState({ isSwipeoutClose: true });
-  }
-  
   render() {
     const { navigate } = this.props.navigation;
 
@@ -43,12 +38,11 @@ export default class HomeScreen extends Component {
         <List>
           {
             this.state.list.map((item, i) => (
-              <Swipeout key={i} close={this.state.isSwipeoutClose} right={[
+              <Swipeout key={i} autoClose={true} right={[
                 {
                   text: 'Add',
                   type: 'primary',
                   onPress: () => {
-                    this.setSwipeoutClose();
                     navigate('AddExpense', { title: item.title });
                   }
                 },
