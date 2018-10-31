@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { ListItem, Button } from 'react-native-elements';
+import { ListItem, Button, List } from 'react-native-elements';
 
 import CustomListItem from './CustomListItem';
 
@@ -10,9 +10,10 @@ export default class HomeScreen extends Component {
   };
   
   render() {
+    const { navigate } = this.props.navigation;
     return (
       <View style={ styles.container }>
-        <View>
+        <List>
           {
             list.map((item, i) => (
               <ListItem
@@ -22,14 +23,10 @@ export default class HomeScreen extends Component {
               />
             ))
           }
-        </View>
+        </List>
         <Button
           title='Budget'
-          onPress={() => {
-              console.log('button pressed');
-              this.props.navigation.navigate('Budget');
-            }
-          }
+          onPress={() => navigate('Budget')}
         />
       </View>
     );

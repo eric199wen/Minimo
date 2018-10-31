@@ -1,17 +1,12 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
-import { Button, ListItem } from 'react-native-elements';
+import { Button, ListItem, List } from 'react-native-elements';
+
+import EditBudget from './EditBudget';
 
 export default class BudgetScreen extends Component {
   static navigationOptions = {
-    title: 'Budget',
-    headerRight: (
-      <Button
-        onPress={() => alert('This is a button!')}
-        title="save"
-        color="#fff"
-      />
-    ),
+    title: 'Budget'
   };
 
   constructor(props){
@@ -33,13 +28,11 @@ export default class BudgetScreen extends Component {
           icon: 'home',
           amount: '$100'
         }
-      ]
+      ],
     }
   }
 
   addTextInput = (key) => {
-    console.log('key= '+key);
-
     let list = this.state.input;
     console.log(list);
     list.push({
@@ -50,35 +43,32 @@ export default class BudgetScreen extends Component {
     console.log(list);
     this.setState({ list });
   }
-
-  editAmount = () => {
-    console.log('edit amount');
-  }
   
   render() {
+    const { navigate } = this.props.navigation;
+
     return (
       <View style={ styles.container }>
         <Text>Total Amount goes here</Text>
-        <View>
-          {/* <FormLabel>Name</FormLabel>
-          <FormInput
-            keyboardType = 'numeric'
-            onChangeText={alert('gogo')}
-          /> */}
+        <List>
           {
             this.state.input.map((item, i) => (
               <ListItem
                 key={i}
-                title={ item.title }
+                title={item.title}
                 hideChevron={true}
-                rightTitle={ item.amount }
+                rightTitle={item.amount}
                 rightTitleStyle={ styles.amount }
                 leftIcon={{ name: item.icon }}
-                onPress={this.editAmount}
+                onPress={() => navigate('EditBudget', {
+                  title: item.title,
+                  amount: item.amount,
+                  icon: item.icon
+                })}
               />
             ))
           }
-        </View>
+        </List>
         <Button
           style={ styles.button }
           large
